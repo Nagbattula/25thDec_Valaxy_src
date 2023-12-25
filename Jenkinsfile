@@ -11,7 +11,6 @@ pipeline {
     environment {
         scannerHome = tool 'SonarQube-Scanner'
     }
-
     stages {
         stage("build"){
             steps {
@@ -20,10 +19,12 @@ pipeline {
                  echo "----------- build complted ----------"
             }
         }
-
         stage('SonarQube analysis') {
             steps {
-                script {
+                        environment {
+                            scannerHome = tool 'SonarQube-Scanner'
+                        }
+                    script {
                     withSonarQubeEnv('SonarQube-servers') {
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
