@@ -20,11 +20,11 @@ pipeline {
 
         stage('SonarQube analysis') {
         environment {
-            scannerHome = tool 'Nag-SonarQube-Scanner'
+            scannerHome = tool 'SonarQube-Scanner'
         }
             steps {
                 script {
-                    withSonarQubeEnv('Nag-SonarQube-servers') {
+                    withSonarQubeEnv('SonarQube-servers') {
                         sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
